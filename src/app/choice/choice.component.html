@@ -1,0 +1,11 @@
+<h2>Prêt•e à faire des tables ?</h2>
+<h3>Quelle table va-t-on travailler ?</h3>
+
+
+<div class="row mt-5">
+  @for (table of tables;track table) {
+    <div class="col-6 col-md-3 mb-3">
+      <a [routerLink]="['/choices', table]" class="btn btn-primary bg-primary-subtle w-100 p-4">Table de {{table}}</a>
+    </div>
+  }
+</div>

@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+$border-radius: 0.25rem; // Ou une valeur plus faible, comme 0, si tu veux des coins carrés
+$border-radius-lg: 0.25rem; // Ou une valeur plus faible, comme 0, si tu veux des coins carrés
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+@include color-mode(dark) {
+  // CSS variable overrides here...
+}
+
