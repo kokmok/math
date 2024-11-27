@@ -9,7 +9,7 @@
       <div class="row">
         @for (response of propositions; track response) {
           <div class="col-6 pb-3">
-            <button class="btn btn-primary  w-100 btn-lg bg-primary-subtle" style="height: 4rem;" (click)="answer(response)">{{response}}</button>
+            <button class="btn btn-primary  w-100 btn-lg bg-primary-subtle" style="height: 4rem;" (click)="answer(response, $event)">{{response}}</button>
           </div>
         }
       </div>
@@ -126,8 +126,10 @@
   </div>
 
 </div>
-<div class="row mt-5" *ngIf="answers.length === 10">
-  <a [routerLink]="['/']">Choisir une autre table</a>
+<div class="row mt-5 justify-content-center" *ngIf="answers.length === 10">
+  <div class="col">
+    <a [routerLink]="['/choices']" class="btn btn-secondary bg-secondary-subtle">Choisir une autre table</a>
+  </div>
 </div>
 
 

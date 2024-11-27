@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {NgClass, NgIf} from "@angular/common";
+import {EventManager} from "../shared/event-manager.service";
+import {SuccessComponent} from "../ui/success/success.component";
 
 @Component({
   selector: 'app-table-component',
@@ -23,7 +25,7 @@ export class TableComponentComponent {
   answers: Answer[] = [];
   propositions: number[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, private eventManager: EventManager) {
     this.activatedRoute.params.subscribe(params => this.tableNumber = params['table']);
   }
 
@@ -95,11 +97,12 @@ export class TableComponentComponent {
   }
 
 
-  answer(response: number) {
+  answer(response: number, event: MouseEvent) {
     const answer = {table: this.tableNumber, mult: this.currentMult, response: response, ok: this.tableNumber * this.currentMult === response}
     this.answers.push(answer);
     if (answer.ok) {
       this.score ++;
+      this.eventManager.broadcast(SuccessComponent.SUCCESS_EVENT, event.clientX, event.clientY);
     }
     if (this.answers.length < 10) {
       this.load();
