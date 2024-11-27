@@ -13,7 +13,7 @@ export const routes: Routes = [
     component: ChoiceComponent
     },
       {
-        path: 'choices/:table',
+        path: 'choices/:table/:operation',
         component: TableComponentComponent
       }
 

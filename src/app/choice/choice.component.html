@@ -1,11 +1,24 @@
 <h2>Prêt•e à faire des tables ?</h2>
-<h3>Quelle table va-t-on travailler ?</h3>
+<h3>Choisis l'opération</h3>
+<div class="row mt-5">
+  <div class="col-4">
+    <button [ngClass]="{'btn': true, 'btn-success bg-primary-success': operation === 'mult', 'btn-primary bg-primary-subtle': operation !== 'mult',  'w-100': true}" (click)="operation='mult'">x</button>
+  </div>
+  <div class="col-4">
+    <button [ngClass]="{'btn': true, 'btn-success bg-primary-success': operation === 'div', 'btn-primary bg-primary-subtle': operation !== 'div',  'w-100': true}" (click)="operation='div'">:</button>
+  </div>
+  <div class="col-4">
+    <button [ngClass]="{'btn': true, 'btn-success bg-primary-success': operation === 'mixed', 'btn-primary bg-primary-subtle': operation !== 'mixed',  'w-100': true}"  (click)="operation='mixed'">x et :</button>
+  </div>
+</div>
+
+<h3 class="mt-5">Quelle table va-t-on travailler ?</h3>
 
 
 <div class="row mt-5">
   @for (table of tables;track table) {
     <div class="col-6 col-md-3 mb-3">
-      <a [routerLink]="['/choices', table]" class="btn btn-primary bg-primary-subtle w-100 p-4">Table de {{table}}</a>
+      <a [routerLink]="['/choices', table, operation]" class="btn btn-primary bg-primary-subtle w-100 p-4">Table de {{table}}</a>
     </div>
   }
 </div>

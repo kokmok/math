@@ -1,32 +1,33 @@
 import { Component } from '@angular/core';
 import {EventManager} from "../../shared/event-manager.service";
-import {NgStyle} from "@angular/common";
+import {NgClass, NgStyle} from "@angular/common";
 
 @Component({
   selector: 'app-success',
   standalone: true,
   imports: [
-    NgStyle
+    NgStyle,
+    NgClass
   ],
   templateUrl: './success.component.html',
   styleUrl: './success.component.scss'
 })
 export class SuccessComponent {
 
-  positionX = "0px";
-  positionY = "0px";
-
   public static readonly SUCCESS_EVENT = "SUCCESS_EVENT";
+  public static readonly FAILED_EVENT = "FAILED_EVENT";
 
-  startAnimation = false;
+  success = false;
+  fails = false;
 
   constructor(eventManager: EventManager) {
     eventManager.subscribe(SuccessComponent.SUCCESS_EVENT, (coords) => {
-      this.positionX = `${(coords[0]-30)}px`;
-      this.positionY = `${(coords[1]-30)}px`;
-      this.startAnimation = true;
-      console.log(coords);
-      setTimeout(() => this.startAnimation = false, 500);
+      this.success = true;
+      setTimeout(() => this.success = false, 400);
+    });
+    eventManager.subscribe(SuccessComponent.FAILED_EVENT, (coords) => {
+      this.fails = true;
+      setTimeout(() => this.fails = false, 400);
     });
   }
 }

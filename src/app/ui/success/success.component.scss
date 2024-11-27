@@ -33,6 +33,24 @@
   animation: stroke 0.1s cubic-bezier(0.65, 0, 0.45, 1) 0.1s forwards;
 }
 
+#success-bg {
+  position: fixed;
+  width: 100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index: -1;
+  animation: toTransparent 0.4s forwards;
+}
+@keyframes toTransparent {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes stroke {
   100% {
     stroke-dashoffset: 0;

@@ -1,15 +1,25 @@
 <H1>Table de {{tableNumber}}</H1>
 
 @if(!started) {
-<button class="btn btn-primary bg-primary-subtle btn-lg mt-5" (click)="init()">C'est parti</button>
+<button class="btn btn-primary bg-primary-subtle btn-lg mt-5" (click)="init()">
+  @if(!answered.length) {
+    C'est parti
+  } @else {
+    Recommencer
+  }
+</button>
 } @else {
-  <h3>{{tableNumber}} x {{currentMult}} = ?</h3>
+  @if(currentQuestion?.table && currentQuestion?.mult && currentQuestion?.operation && currentQuestion?.operation === 'mult') {
+    <h3>{{currentQuestion?.table}} x {{currentQuestion?.mult}} = ?</h3>
+  } @else if(currentQuestion?.table && currentQuestion?.mult) {
+    <h3>{{(currentQuestion?.table ?? 0) * (currentQuestion?.mult ?? 0)}} : {{currentQuestion?.table}} = ?</h3>
+  }
   <div class="row mt-5 justify-content-center">
     <div class="col-12 col-md-4">
       <div class="row">
         @for (response of propositions; track response) {
           <div class="col-6 pb-3">
-            <button class="btn btn-primary  w-100 btn-lg bg-primary-subtle" style="height: 4rem;" (click)="answer(response, $event)">{{response}}</button>
+            <button class="btn btn-primary  w-100 btn-lg bg-primary-subtle" style="height: 4rem;" (click)="answer(response)">{{response}}</button>
           </div>
         }
       </div>
@@ -19,114 +29,27 @@
   </div>
 }
 
-<!--<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">-->
-<!--  <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">-->
-<!--    <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>-->
-<!--    <span class="fs-5 fw-semibold">List group</span>-->
-<!--  </a>-->
-<!--  <div class="list-group list-group-flush border-bottom scrollarea">-->
-<!--    <a href="#" class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true">-->
-<!--      <div class="d-flex w-100 align-items-center justify-content-between">-->
-<!--        <strong class="mb-1">List group item heading</strong>-->
-<!--        <small>Wed</small>-->
-<!--      </div>-->
-<!--      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
-<!--    </a>-->
-<!--    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">-->
-<!--      <div class="d-flex w-100 align-items-center justify-content-between">-->
-<!--        <strong class="mb-1">List group item heading</strong>-->
-<!--        <small class="text-muted">Tues</small>-->
-<!--      </div>-->
-<!--      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
-<!--    </a>-->
-<!--    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">-->
-<!--      <div class="d-flex w-100 align-items-center justify-content-between">-->
-<!--        <strong class="mb-1">List group item heading</strong>-->
-<!--        <small class="text-muted">Mon</small>-->
-<!--      </div>-->
-<!--      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
-<!--    </a>-->
-
-<!--    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">-->
-<!--      <div class="d-flex w-100 align-items-center justify-content-between">-->
-<!--        <strong class="mb-1">List group item heading</strong>-->
-<!--        <small class="text-muted">Wed</small>-->
-<!--      </div>-->
-<!--      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
-<!--    </a>-->
-<!--    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">-->
-<!--      <div class="d-flex w-100 align-items-center justify-content-between">-->
-<!--        <strong class="mb-1">List group item heading</strong>-->
-<!--        <small class="text-muted">Tues</small>-->
-<!--      </div>-->
-<!--      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
-<!--    </a>-->
-<!--    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">-->
-<!--      <div class="d-flex w-100 align-items-center justify-content-between">-->
-<!--        <strong class="mb-1">List group item heading</strong>-->
-<!--        <small class="text-muted">Mon</small>-->
-<!--      </div>-->
-<!--      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
-<!--    </a>-->
-<!--    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">-->
-<!--      <div class="d-flex w-100 align-items-center justify-content-between">-->
-<!--        <strong class="mb-1">List group item heading</strong>-->
-<!--        <small class="text-muted">Wed</small>-->
-<!--      </div>-->
-<!--      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
-<!--    </a>-->
-<!--    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">-->
-<!--      <div class="d-flex w-100 align-items-center justify-content-between">-->
-<!--        <strong class="mb-1">List group item heading</strong>-->
-<!--        <small class="text-muted">Tues</small>-->
-<!--      </div>-->
-<!--      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
-<!--    </a>-->
-<!--    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">-->
-<!--      <div class="d-flex w-100 align-items-center justify-content-between">-->
-<!--        <strong class="mb-1">List group item heading</strong>-->
-<!--        <small class="text-muted">Mon</small>-->
-<!--      </div>-->
-<!--      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
-<!--    </a>-->
-<!--    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">-->
-<!--      <div class="d-flex w-100 align-items-center justify-content-between">-->
-<!--        <strong class="mb-1">List group item heading</strong>-->
-<!--        <small class="text-muted">Wed</small>-->
-<!--      </div>-->
-<!--      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
-<!--    </a>-->
-<!--    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">-->
-<!--      <div class="d-flex w-100 align-items-center justify-content-between">-->
-<!--        <strong class="mb-1">List group item heading</strong>-->
-<!--        <small class="text-muted">Tues</small>-->
-<!--      </div>-->
-<!--      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
-<!--    </a>-->
-<!--    <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">-->
-<!--      <div class="d-flex w-100 align-items-center justify-content-between">-->
-<!--        <strong class="mb-1">List group item heading</strong>-->
-<!--        <small class="text-muted">Mon</small>-->
-<!--      </div>-->
-<!--      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>-->
-<!--    </a>-->
-<!--  </div>-->
-<!--</div>-->
-
 <div class="row mt-5">
   <div class="mt-5">
-    @if(answers.length>0) {
-      <H3>Score: {{score}}/{{answers.length}}</H3>
+    @if(answered.length>0) {
+      <H3>Score: {{score}}/{{answered.length}}</H3>
       <ul class="list-unstyled">
-        @for(answer of answers; track answer.mult) {
-            <li [ngClass]="{'text-success': answer.ok, 'text-danger': !answer.ok}">{{answer.table}} x {{answer.mult}} = {{answer.response}}</li>
+        @for(answer of answered; track answer.mult) {
+            <li [ngClass]="{'text-success': answer.isOk(), 'text-danger': !answer.isOk()}">
+              @if (answer.operation === 'mult') {
+                {{answer.table}} x {{answer.mult}} = {{answer.answer}}
+              } @else {
+                {{answer.table * answer.mult}} : {{answer.table}} = {{answer.answer}}
+              }
+
+            </li>
           }
       </ul>
     }
   </div>
 
 </div>
-<div class="row mt-5 justify-content-center" *ngIf="answers.length === 10">
+<div class="row mt-5 justify-content-center" *ngIf="answered.length === 10">
   <div class="col">
     <a [routerLink]="['/choices']" class="btn btn-secondary bg-secondary-subtle">Choisir une autre table</a>
   </div>
