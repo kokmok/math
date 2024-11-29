@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {NgClass} from "@angular/common";
 
 @Component({
@@ -17,9 +17,10 @@ export class ChoiceComponent {
   tables: number[] = [];
   limit = 10;
   operation = 'mult' ;
+  type = 'choices'
 
-
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe(params => this.type = params['type']);
     this.tables = [];
     for(let i=0; i < this.limit; i++) {
       this.tables.push(i + 1);

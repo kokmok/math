@@ -1,0 +1,47 @@
+<div class="row mt-5 justify-content-center">
+  <div class="col-12 col-md-4">
+    <h1 class="text-primary-emphasis">{{ response.length ? response :  '_' }}</h1>
+<!--    <input [readOnly]="true" class="form-control" [value]="response"/>-->
+  </div>
+</div>
+<div class="row fixed-bottom m-auto  col-12 col-md-4">
+  <div class="row container">
+
+    <div class="col-4 mb-3">
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="appendResponse('1')">1</button>
+    </div>
+    <div class="col-4 mb-3">
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="appendResponse('2')">2</button>
+    </div>
+    <div class="col-4 mb-3">
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="appendResponse('3')">3</button>
+    </div>
+    <div class="col-4 mb-3">
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="appendResponse('4')">4</button>
+    </div>
+    <div class="col-4 mb-3">
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="appendResponse('5')">5</button>
+    </div>
+    <div class="col-4 mb-3">
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="appendResponse('6')">6</button>
+    </div>
+    <div class="col-4 mb-3">
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="appendResponse('4')">7</button>
+    </div>
+    <div class="col-4 mb-3">
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="appendResponse('5')">8</button>
+    </div>
+    <div class="col-4 mb-3">
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="appendResponse('6')">9</button>
+    </div>
+    <div class="col-4 mb-3">
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="backSpace()"><fa-icon [icon]="['fas', 'arrow-left']"></fa-icon></button>
+    </div>
+    <div class="col-4 mb-3">
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="appendResponse('0')">0</button>
+    </div>
+    <div class="col-4 mb-3">
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="answer()">OK</button>
+    </div>
+  </div>
+</div>

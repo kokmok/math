@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <h4 class="modal-title">Score: {{score()}}/{{answers.length}}</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body text-center">
+
+  <ul class="list-unstyled">
+    @for(answer of answers; track answer.mult) {
+      <li [ngClass]="{'text-success': answer.isOk(), 'text-danger': !answer.isOk()}">
+        @if (answer.operation === 'mult') {
+          {{answer.table}} x {{answer.mult}} = {{answer.answer}}
+        } @else {
+          {{answer.table * answer.mult}} : {{answer.table}} = {{answer.answer}}
+        }
+
+      </li>
+    }
+  </ul>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close()">Close</button>
+</div>
+

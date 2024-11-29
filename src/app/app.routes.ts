@@ -9,13 +9,13 @@ export const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'choices',
+    path: ':type',
     component: ChoiceComponent
     },
-      {
-        path: 'choices/:table/:operation',
-        component: TableComponentComponent
-      }
+    {
+      path: ':type/:table/:operation',
+      component: TableComponentComponent
+    }
 
 
 ];

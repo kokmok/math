@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {NgbCollapse} from "@ng-bootstrap/ng-bootstrap";
 import {SuccessComponent} from "./ui/success/success.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, NgbCollapse, SuccessComponent],
+  imports: [RouterOutlet, RouterLink, NgbCollapse, SuccessComponent, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
