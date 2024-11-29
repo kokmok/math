@@ -41,7 +41,7 @@
       <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="appendResponse('0')">0</button>
     </div>
     <div class="col-4 mb-3">
-      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" (click)="answer()">OK</button>
+      <button class="btn btn-lg w-100 btn-primary bg-primary-subtle" [disabled]="response.length" (click)="answer()">OK</button>
     </div>
   </div>
 </div>
