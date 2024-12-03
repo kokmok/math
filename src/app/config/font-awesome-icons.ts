@@ -60,8 +60,8 @@ import {
   faShoppingCart,
   faPen, faTrash, faFilePdf, faFilter, faChevronDown, faChevronUp, faTv, faPrint, faCamera, faEthernet, faKeyboard
 
-  // jhipster-needle-add-icon-import
 } from '@fortawesome/free-solid-svg-icons';
+import {faGithub} from "@fortawesome/free-brands-svg-icons";
 
 export function setupFontAwesome(library: FaIconLibrary): void {
   library.addIcons(...fontAwesomeIcons);
@@ -136,5 +136,6 @@ export const fontAwesomeIcons = [
   faPrint,
   faCamera,
   faEthernet,
-  faKeyboard
+  faKeyboard,
+  faGithub
 ];

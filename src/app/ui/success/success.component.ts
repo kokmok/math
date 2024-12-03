@@ -21,11 +21,11 @@ export class SuccessComponent {
   fails = false;
 
   constructor(eventManager: EventManager) {
-    eventManager.subscribe(SuccessComponent.SUCCESS_EVENT, (coords) => {
+    eventManager.subscribe(SuccessComponent.SUCCESS_EVENT, () => {
       this.success = true;
       setTimeout(() => this.success = false, 400);
     });
-    eventManager.subscribe(SuccessComponent.FAILED_EVENT, (coords) => {
+    eventManager.subscribe(SuccessComponent.FAILED_EVENT, () => {
       this.fails = true;
       setTimeout(() => this.fails = false, 400);
     });

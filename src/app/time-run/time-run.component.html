@@ -1,0 +1,37 @@
+<h2>Le plus de réponses en {{ maxSeconds }} secondes</h2>
+@if (!started) {
+<div class="row mt-5">
+    <div class="col">
+      @if(!answered.length) {
+      <button class="btn btn-primary bg-primary-subtle" (click)="start()">Démarrer</button>
+      } @else {
+        <h3>Temps écoulé</h3>
+        <button class="btn btn-primary bg-primary-subtle" (click)="restart()">Recommencer</button>
+      }
+    </div>
+</div>
+} @else {
+    <h3 [ngClass]="{'m-3': true, 'text-primary': countDown > 5, 'text-danger': countDown<6}">{{countDown}}</h3>
+}
+@if(currentQuestion?.table && currentQuestion?.mult && currentQuestion?.operation && currentQuestion?.operation === 'mult') {
+  <h3>{{currentQuestion?.table}} x {{currentQuestion?.mult}} = ?</h3>
+} @else if(currentQuestion?.table && currentQuestion?.mult) {
+  <h3>{{(currentQuestion?.table ?? 0) * (currentQuestion?.mult ?? 0)}} : {{currentQuestion?.table}} = ?</h3>
+}
+@if(currentQuestion) {
+  <app-free-answer *ngIf="currentQuestion" (answered)="answer($event)"></app-free-answer>
+
+}
+
+@if(started || answered.length > 0) {
+  <div class="row mt-5">
+    <div class="mt-5">
+      @if(answered.length>0) {
+        <H3>Score: {{score()}}/{{answered.length}} <a href="#" (click)="showResults($event)"><fa-icon [icon]="['fas', 'eye']"></fa-icon></a></H3>
+      }
+    </div>
+
+  </div>
+}
+
+
