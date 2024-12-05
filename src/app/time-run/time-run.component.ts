@@ -24,7 +24,7 @@ import {SuccessComponent} from "../ui/success/success.component";
 export class TimeRunComponent {
 
   maxSeconds = 60;
-  countDown = 7;
+  countDown = 60;
   operations = [Operation.MULT, Operation.DIV];
   currentQuestion: Question | undefined;
   answered: Question[] = [];
